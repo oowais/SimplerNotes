@@ -1,0 +1,25 @@
+<div class="empty-notes-text" *ngIf="emptyNotes">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Click New Note button to add a note</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>
+<div class="note-card-container" ngClass.xs="note-card-container-xs" ngClass.gt-md="note-card-container-gt-md"
+  ngClass.sm="note-card-container-sm">
+  <mat-card class="note-card" *ngFor="let n of notes">
+    <button mat-icon-button matTooltip="Delete note" color="primary" class="delete-button" (click)="delete(n.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <div class="note-card-details" (click)="edit(n.id, n.heading, n.note_text, n.last_edited)">
+      <mat-card-header>
+        <mat-card-title  class="wrap">{{n.heading}}</mat-card-title>
+        <mat-card-subtitle>Edited {{n.last_edited}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-subtitle class="wrap">{{(n.note_text.length>200)? (n.note_text | slice:0:200)+'...':(n.note_text)}}
+        </mat-card-subtitle>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

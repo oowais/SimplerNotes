@@ -1,0 +1,5 @@
+.input {
+    /* vw is width viewport for browser */
+    width: calc(100vw - 2em);
+    max-width: 400px;
+}

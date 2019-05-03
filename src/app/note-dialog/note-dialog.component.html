@@ -1,0 +1,28 @@
+<div class="note-card" ngClass.sm="note-card-sm" ngClass.lt-sm="note-card-lt-sm">
+    <div mat-dialog-title>
+        <mat-form-field class="input-title">
+            <textarea class="input-title-area" matInput placeholder="Title" cdkTextareaAutosize cdkAutosizeMaxRows="2"
+                value="{{note.heading}}" [(ngModel)]="note.heading" maxlength="100" #title></textarea>
+            <mat-hint align="end"> {{title.value.trim().length}}/100</mat-hint>
+            <mat-hint align="start"><span *ngIf="note.last_edited">
+                    Edited: {{note.last_edited}}
+                </span></mat-hint>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-content>
+        <mat-form-field class="input-text">
+            <textarea class="input-text-area" matInput placeholder="Leave a comment" [matTextareaAutosize]="true"
+                [(ngModel)]="note.note_text" maxlength="5000" #text value="{{note.note_text}}"></textarea>
+            <mat-hint align="end">{{text.value.trim().length}}/5000</mat-hint>
+        </mat-form-field>
+    </div>
+    <div align='end' mat-dialog-actions>
+        <button *ngIf="note.last_edited" [disabled]="spinner" mat-raised-button color="warn"
+            (click)="deleteNote(note.id)">Delete</button>
+        <span class="spacer"></span>
+        <mat-spinner *ngIf="spinner" style="margin: 0em 1em" diameter="40"></mat-spinner>
+        <button [disabled]="spinner" mat-raised-button (click)="close()">Cancel</button>
+        <button [disabled]="spinner" mat-raised-button color="primary"
+            (click)="save(note.id, note.heading, note.note_text)">Save</button>
+    </div>
+</div>

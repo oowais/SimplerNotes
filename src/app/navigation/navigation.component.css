@@ -1,0 +1,14 @@
+.toolbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.feedback-button, .home-button {
+    padding: 1px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

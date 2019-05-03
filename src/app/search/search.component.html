@@ -1,0 +1,17 @@
+<mat-toolbar *ngIf="showSearchBar" color="primary" class="toolbar mat-elevation-z2">
+  <mat-toolbar-row>
+    <mat-form-field class="search-bar">
+      <mat-icon *ngIf="!searchValue">search</mat-icon>
+      <input type="text" matInput [(ngModel)]="searchValue" (input)="onSearchChange($event.target.value)">
+    </mat-form-field>
+
+    <button mat-button *ngIf="searchValue" matSuffix mat-icon-button (click)="searchValue=''"
+      (click)="onSearchChange('')">
+      <mat-icon>clear</mat-icon>
+    </button>
+
+    <button class="new-note-button" color="accent" mat-raised-button (click)="newNote()">
+      <mat-icon>add</mat-icon> New Note
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

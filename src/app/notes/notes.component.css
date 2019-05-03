@@ -1,0 +1,53 @@
+/* greater than xs and until md */
+
+.note-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    margin-bottom: 4em;
+}
+
+.note-card-container-gt-md {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.note-card-container-xs {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1em;
+}
+
+.note-card-container-sm {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+}
+
+.delete-button {
+    position: absolute;
+    right: 0%;
+    display: none;
+}
+
+.note-card:hover .delete-button {
+    display: inline-block;
+}
+
+.note-card:hover {
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+.note-card-details {
+    cursor: pointer;
+}
+
+.empty-notes-text {
+    margin: 0 auto;
+}
+
+.wrap {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+}

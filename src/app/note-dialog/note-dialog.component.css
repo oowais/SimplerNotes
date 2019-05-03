@@ -1,0 +1,30 @@
+.note-card {
+    width: 600px;
+    max-height: 100vh;
+}
+
+.input-title, .input-text {
+    width: 100%;
+}
+
+.input-text-area {
+    overflow-y: hidden;
+}
+
+.note-card-sm {
+    width: 430px;
+    max-height: 100vh;
+}
+
+.note-card-lt-sm {
+    width: 230px;
+    max-height: 95vh;
+}
+
+.last-edited-container-lt-sm {
+    display: none;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

@@ -1,0 +1,24 @@
+<div class="container" fxLayout="column" fxLayoutAlign="space-evenly center">
+
+  <br>
+  <mat-form-field class="input" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Your Name" [(ngModel)]="model.name">
+  </mat-form-field>
+
+  <mat-form-field class="input" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Your Email" [(ngModel)]="model.email" required email>
+    <mat-error>Provide a proper email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input" appearance="outline">
+    <mat-label>Feedback</mat-label>
+    <textarea #feedback minlength="20" matInput [matTextareaAutosize]="true" placeholder="Leave a comment"
+      [(ngModel)]="model.feedback" required></textarea>
+    <mat-hint align="end">{{feedback.value.trim().length}}/20</mat-hint>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" fxFlexAlign="center" (click)="submitFeedback()">Submit</button>
+
+</div>
