@@ -58,9 +58,11 @@ export class NotesComponent implements OnInit {
   public getAllNotes(): void {
     this.service.getAllNotes().subscribe(
       data => {
+        console.log(data);
         data.length > 0 ? this.emptyNotes = false : this.emptyNotes = true;
         this.notes = data;
-      });
+      },
+      err => console.log(err));
   }
 
   delete(id: number): void {

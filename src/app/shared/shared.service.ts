@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -13,7 +13,8 @@ import { FeedbackViewModel } from '../model/feedback';
 })
 export class SharedService {
 
-    private BASE_URL: string = 'http://127.0.0.1:5002/';
+    // private BASE_URL: string = 'http://127.0.0.1:5002/';
+    private BASE_URL: string = 'http://localhost:8000/';
 
     private FEEDBACK_URL: string = this.BASE_URL + 'feedback';
     private GET_NOTES_URL: string = this.BASE_URL + 'notes';
@@ -71,8 +72,13 @@ export class SharedService {
    * @description Get call to get all notes from server
    * @returns Observable<Note[]>
    */
-    getAllNotes(): Observable<Note[]> {
-        return this.http.get<Note[]>(this.GET_NOTES_URL);
+    getAllNotes(): Observable<any> {
+        var json = '{"result":true, "count":42}';
+        let options = {
+            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        };
+        var obj = JSON.parse(json);
+        return this.http.post(this.GET_NOTES_URL, obj, options);
     }
 
 
