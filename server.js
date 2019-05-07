@@ -13,7 +13,7 @@ app.use(cors(corsOptions))
 
 const port = 8000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 require('./src/app/routes')(app, {});
 app.listen(port, () => {

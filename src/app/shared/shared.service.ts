@@ -74,11 +74,17 @@ export class SharedService {
    */
     getAllNotes(): Observable<any> {
         var json = '{"result":true, "count":42}';
+        const obj1 = {
+            person_name: 'Name test1',
+            business_name: 'business_name',
+            business_gst_number: 345623432
+          };
         let options = {
-            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+            headers: new HttpHeaders().set('Content-Type', 'application/json')
         };
         var obj = JSON.parse(json);
-        return this.http.post(this.GET_NOTES_URL, obj, options);
+        // json, obj and obj1: all the three are working
+        return this.http.post(this.GET_NOTES_URL, obj1, options);
     }
 
 
