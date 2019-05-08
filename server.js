@@ -2,6 +2,7 @@ const express = require('express');
 var cors = require('cors')
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
+// TODO: Mpve notes.db to ./
 let db = new sqlite3.Database('./src/app/routes/notes.db', (err) => {
     if (err) {
         return console.error(err.message);
