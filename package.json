@@ -2,7 +2,7 @@
   "name": "simple-notes",
   "productName": "Simple Notes",
   "version": "0.0.0",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

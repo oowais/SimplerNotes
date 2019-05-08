@@ -1,14 +1,6 @@
 const express = require('express');
 var cors = require('cors')
 const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
-// TODO: Mpve notes.db to ./
-let db = new sqlite3.Database('./src/app/routes/notes.db', (err) => {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log('Connected to the SQlite database.');
-});
 const app = express();
 
 var corsOptions = {
@@ -19,7 +11,7 @@ var corsOptions = {
 app.use(cors(corsOptions))
 const port = 8000;
 app.use(bodyParser.json());
-require('./src/app/routes')(app, db);
+require('./node-server')(app);
 app.listen(port, () => {
     console.log('Live on ' + port);
 });

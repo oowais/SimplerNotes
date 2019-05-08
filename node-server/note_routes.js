@@ -1,6 +1,12 @@
 const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./notes.db', (err) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log('Connected to the SQlite database.');
+});
 
-module.exports = function (app, db) {
+module.exports = function (app) {
 
     createTable();
 
@@ -28,7 +34,7 @@ module.exports = function (app, db) {
     }
 
     function getAllNotesCB(res, notes) {
-        console.log('GET NOTES');
+        // console.log('GET NOTES');
         res.status(200).send(notes);
     }
 
@@ -125,9 +131,9 @@ module.exports = function (app, db) {
     }
 
     function openDB() {
-        db = new sqlite3.Database('./src/app/routes/notes.db', (err) => {
+        db = new sqlite3.Database('./notes.db', (err) => {
             if (err) {
-                console.error('Unable to connect to the SQlite DB./src/app/routes/db.');
+                console.error('Unable to connect to the SQlite DB notes.db');
                 return console.error(err.message);
             }
         });
