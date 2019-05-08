@@ -73,18 +73,7 @@ export class SharedService {
    * @returns Observable<Note[]>
    */
     getAllNotes(): Observable<any> {
-        var json = '{"result":true, "count":42}';
-        const obj1 = {
-            person_name: 'Name test1',
-            business_name: 'business_name',
-            business_gst_number: 345623432
-          };
-        let options = {
-            headers: new HttpHeaders().set('Content-Type', 'application/json')
-        };
-        var obj = JSON.parse(json);
-        // json, obj and obj1: all the three are working
-        return this.http.post(this.GET_NOTES_URL, obj1, options);
+        return this.http.get<Note[]>(this.GET_NOTES_URL);
     }
 
 
@@ -126,7 +115,7 @@ export class SharedService {
     }
 
     deleteById(id: number): Observable<any> {
-        return this.http.post(this.DELETE_BY_ID_URL, id);
+        return this.http.post(this.DELETE_BY_ID_URL, {'id': id});
     }
 
     addNote(heading: string, text: string): Observable<any> {

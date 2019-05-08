@@ -2,9 +2,29 @@ dummy_notes = [{ 'id': 1, 'heading': 'Lorem ipsum dolor sit amet, consectetur ad
 
 
 module.exports = function (app, db) {
-    app.post('/notes', (req, res) => {
-        // You'll create your note here.
-        console.log(req.body)
-        res.status(200).send(dummy_notes)
+    app.get('/notes', (req, res) => {
+        if (req.query.search == undefined){
+            res.status(200).send(dummy_notes);
+        } else {
+            res.status(200).send([{ 'id': 1, 'heading': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt, nulla at lacinia maximus, l', 'note_text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt, nulla at lacinia maximus, lacus nibh vulputate est, ut suscipit tortor urna eget nisl. Nullam ut luctus sapien, eget malesuada libero. Vestibulum massa sapien, suscipit vel facilisis non, scelerisque at velit. Maecenas euismod felis sapien, vel vehicula sapien malesuada in.', 'last_edited': '04-05-2019 00:20' }]);
+        }
+    });
+
+    app.post('/notes/add', (req, res) => {
+        console.log(req.body);
+        responeMessage = { 'success': true };
+        res.status(200).send(responeMessage);
+    });
+
+    app.post('/notes/edit', (req, res) => {
+        console.log(req.body);
+        responeMessage = { 'success': true };
+        res.status(200).send(responeMessage);
+    });
+
+    app.post('/notes/delete', (req, res) => {
+        console.log(req.body);
+        responeMessage = { 'success': true };
+        res.status(200).send(responeMessage);
     });
 };
