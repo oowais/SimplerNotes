@@ -19,16 +19,16 @@ module.exports = function (app) {
     });
 
     function getAllNotes(res) {
-        openDB();
-        getNotes = 'SELECT * FROM notes';
         db.serialize(function () {
+            openDB();
+            getNotes = 'SELECT * FROM notes';
             db.all(getNotes, function (err, notes) {
                 if (err != null) {
                     console.log(err);
                     getAllNotesCBError(res, err);
                 }
                 getAllNotesCB(res, notes);
-                db.close();
+                // db.close();
             });
         });
     }
@@ -53,14 +53,14 @@ module.exports = function (app) {
                     console.log(err);
                     getFilteredNotesCBError(res, err);
                 }
-                getFilteredNotesCB(res, notes);
+                getFilteredNotesCB(res, notes, filter);
                 db.close();
             });
         });
     }
 
-    function getFilteredNotesCB(res, notes) {
-        console.log('GET FILTERED NOTES');
+    function getFilteredNotesCB(res, notes, filter) {
+        console.log('FILTER: ' + filter);
         res.status(200).send(notes);
     }
 
