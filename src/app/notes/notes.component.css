@@ -33,6 +33,14 @@
 
 .note-card:hover {
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+    max-height: 100%;
+    transition-delay: 500ms;
+}
+
+.note-card {
+    overflow: hidden;
+    max-height: 15em;
+    transition: max-height 300ms ease-out;
 }
 
 .note-card-details {
