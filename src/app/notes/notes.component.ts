@@ -44,6 +44,8 @@ export class NotesComponent implements OnInit {
         this.service.getFilteredNotes(val).subscribe(
           data => {
             this.notes = data;
+          }, err => {
+            alert('Server error! Please restart/refresh');
           }
         );
       else this.getAllNotes();
@@ -61,7 +63,10 @@ export class NotesComponent implements OnInit {
         data.length > 0 ? this.emptyNotes = false : this.emptyNotes = true;
         this.notes = data;
       },
-      err => console.log(err));
+      err => {
+        alert('Server error! Please restart/refresh');
+        console.log(err);
+      });
   }
 
   delete(id: number): void {

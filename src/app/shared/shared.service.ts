@@ -14,7 +14,7 @@ import { FeedbackViewModel } from '../model/feedback';
 export class SharedService {
 
     // private BASE_URL: string = 'http://127.0.0.1:5002/';
-    private BASE_URL: string = 'http://localhost:8000/';
+    private BASE_URL = 'http://localhost:8000/';
 
     private FEEDBACK_URL: string = this.BASE_URL + 'feedback';
     private GET_NOTES_URL: string = this.BASE_URL + 'notes';
@@ -22,8 +22,8 @@ export class SharedService {
     private EDIT_NOTE_URL: string = this.BASE_URL + 'notes/edit';
     private DELETE_BY_ID_URL: string = this.BASE_URL + 'notes/delete';
 
-    private searchValue = new BehaviorSubject<string>("");
-    private page = new BehaviorSubject<string>("");
+    private searchValue = new BehaviorSubject<string>('');
+    private page = new BehaviorSubject<string>('');
     private deleteNote = new BehaviorSubject<number>(0);
 
     currentSearchValue = this.searchValue.asObservable();
@@ -36,75 +36,75 @@ export class SharedService {
     ) { }
 
     /**
-   * @ngdoc function
-   * @name changePage
-   * @description Send event that page has changed
-   * @param pageName
-   */
+     * @ngdoc function
+     * @name changePage
+     * @description Send event that page has changed
+     * @param pageName
+     */
     changePage(pageName: string) {
         this.page.next(pageName);
     }
 
     /**
-    * @ngdoc function
-    * @name changeSearchValue
-    * @description Send event that search value has changed
-    * @param search
-    */
+     * @ngdoc function
+     * @name changeSearchValue
+     * @description Send event that search value has changed
+     * @param search
+     */
     changeSearchValue(search: string) {
         this.searchValue.next(search);
     }
 
     /**
-    * @ngdoc function
-    * @name triggerDeleteNote
-    * @description Send event that delete must be executed
-    * @param search
-    */
+     * @ngdoc function
+     * @name triggerDeleteNote
+     * @description Send event that delete must be executed
+     * @param search
+     */
     triggerDeleteNote(id: number) {
         this.deleteNote.next(id);
     }
 
 
     /**
-   * @ngdoc function
-   * @name getAllNotes
-   * @description Get call to get all notes from server
-   * @returns Observable<Note[]>
-   */
+     * @ngdoc function
+     * @name getAllNotes
+     * @description Get call to get all notes from server
+     * @returns Observable<Note[]>
+     */
     getAllNotes(): Observable<any> {
         return this.http.get<Note[]>(this.GET_NOTES_URL);
     }
 
 
     /**
-   * @ngdoc function
-   * @name getFilteredNotes
-   * @description Get call to get filtered notes from server
-   * @returns Observable<Note[]>
-   */
+     * @ngdoc function
+     * @name getFilteredNotes
+     * @description Get call to get filtered notes from server
+     * @returns Observable<Note[]>
+     */
     getFilteredNotes(searchVal): Observable<Note[]> {
         return this.http.get<Note[]>(this.GET_NOTES_URL + '?search=' + searchVal);
     }
 
     /**
-   * @ngdoc function
-   * @name submitFeedback
-   * @description Post call to submit feedback to server
-   * @param feedback
-   * @returns Observable<any>
-   */
+     * @ngdoc function
+     * @name submitFeedback
+     * @description Post call to submit feedback to server
+     * @param feedback
+     * @returns Observable<any>
+     */
     submitFeedback(feedback: FeedbackViewModel): Observable<any> {
         return this.http.post(this.FEEDBACK_URL, feedback);
     }
 
     /**
-   * @ngdoc function
-   * @name alert
-   * @description Snack bar alert message
-   * @param text Text to be displayed on alert snack bar
-   * @param error If this alert is an error message or info
-   */
+     * @ngdoc function
+     * @name alert
+     * @description Snack bar alert message
+     * @param text Text to be displayed on alert snack bar
+     * @param error If this alert is an error message or info
+     */
     alert(text: string, error: boolean): void {
         let config = new MatSnackBarConfig();
         config.verticalPosition = 'top';
@@ -115,7 +115,7 @@ export class SharedService {
     }
 
     deleteById(id: number): Observable<any> {
-        return this.http.post(this.DELETE_BY_ID_URL, {'id': id});
+        return this.http.post(this.DELETE_BY_ID_URL, { 'id': id });
     }
 
     addNote(heading: string, text: string): Observable<any> {

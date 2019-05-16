@@ -54,7 +54,7 @@ module.exports = function (app) {
                     getFilteredNotesCBError(res, err);
                 }
                 getFilteredNotesCB(res, notes, filter);
-                db.close();
+                // db.close();
             });
         });
     }
