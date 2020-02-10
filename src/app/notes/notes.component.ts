@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../model/note';
 import { SharedService } from '../shared/shared.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../delete-confirm-dialog/delete-confirm-dialog.component';
 import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 
@@ -12,7 +12,7 @@ import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 })
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
-  emptyNotes: boolean = false;
+  emptyNotes = false;
 
   constructor(
     private service: SharedService,
@@ -28,8 +28,9 @@ export class NotesComponent implements OnInit {
 
   startReceivingEvents() {
     this.service.currentDeleteNote.subscribe(id => {
-      if (0 != id)
+      if (0 !== id) {
         this.delete(id);
+      }
     });
   }
 
@@ -40,7 +41,7 @@ export class NotesComponent implements OnInit {
    */
   filterNotes() {
     this.service.currentSearchValue.subscribe(val => {
-      if ("" != val)
+      if ('' !== val) {
         this.service.getFilteredNotes(val).subscribe(
           data => {
             this.notes = data;
@@ -48,7 +49,7 @@ export class NotesComponent implements OnInit {
             alert('Server error! Please restart/refresh');
           }
         );
-      else this.getAllNotes();
+      } else { this.getAllNotes(); }
     });
   }
 
@@ -82,8 +83,9 @@ export class NotesComponent implements OnInit {
               this.service.alert('Note deleted!', false);
               this.getAllNotes();
             }
-            else
+            else {
               this.service.alert(msg, true);
+            }
           },
           err => {
             console.log(err);
